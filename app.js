@@ -3,27 +3,33 @@ var app = koa();
 
 // x-response-time
 
-app.use(function *(next){
-  var start = new Date;
+var setResponseTime = function *(next){
+	var start = new Date;
   yield next;
   var ms = new Date - start;
   this.set('X-Response-Time', ms + 'ms');
-});
+}
 
 // logger
-
-app.use(function *(next){
-  var start = new Date;
+var logger = function *(next){
+	var start = new Date;
   yield next;
   var ms = new Date - start;
-  console.log('%s %s - %s', this.method, this.url, ms);
-});
-
+  console.log('%s %s - %s ms', this.method, this.url, ms);
+}
 // response
+var response = function *(){
+  this.body = 'Hello World'
+}
 
-app.use(function *(){
-  this.body = 'Hello World';
-});
+var timeout = function *(next){
+	setTimeout((yield next), 3000 );
+}
+
+// app.use(timeout)
+app.use(logger)
+app.use(setResponseTime)
+app.use(response);
 
 app.listen(3000);
 console.log("listening 3000");

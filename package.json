@@ -6,9 +6,9 @@
   "description": "a koa application",
   "keywords": [],
   "dependencies": {
-    "koa":"latest"
+    "koa": "latest",
+    "koa-router": "^5.4.0"
   },
-  
   "scripts": {
     "start": "node app.doc",
     "debug": "node debug app.js",
