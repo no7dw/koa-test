@@ -1,8 +1,11 @@
-var koa = require('koa');
-var app = koa();
+'use strict'
+
+const koa = require('koa')
+const app = koa()
+const router = require('./router');
+const bodyparser = require('koa-bodyparser')
 
 // x-response-time
-
 var setResponseTime = function *(next){
 	var start = new Date;
   yield next;
@@ -29,7 +32,9 @@ var timeout = function *(next){
 // app.use(timeout)
 app.use(logger)
 app.use(setResponseTime)
-app.use(response);
+// app.use(response);
+app.use(bodyparser())
+app.use(router.routes())
 
 app.listen(3000);
 console.log("listening 3000");

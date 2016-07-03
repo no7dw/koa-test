@@ -7,10 +7,11 @@
   "keywords": [],
   "dependencies": {
     "koa": "latest",
+    "koa-bodyparser": "^2.2.0",
     "koa-router": "^5.4.0"
   },
   "scripts": {
-    "start": "node app.doc",
+    "start": "node-dev app",
     "debug": "node debug app.js",
     "frontend_e2e": "protractor karma/protractor.conf.js"
   },

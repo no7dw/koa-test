@@ -19,3 +19,4 @@ logger(cb) =>
 
 ### koa 重用相关模块
 #### koa-router
+#### koa-bodyparser
